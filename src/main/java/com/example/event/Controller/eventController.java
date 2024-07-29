@@ -33,11 +33,11 @@ public class eventController {
 
     @PutMapping("/update/{index}")
     public ResponseEntity updateEvent(@PathVariable int index,@Valid @RequestBody Event event , Errors errors ) {
-        events.set(index, event);
         if (errors.hasErrors()) {
             String message = errors.getFieldError().getDefaultMessage();
             return ResponseEntity.status(400).body(message);
         }
+        events.set(index, event);
         return ResponseEntity.status(200).body(new ApiResponse("Event updated successfully"));
     }
 
